@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Drag and drop the shapes</title>
+
+<script type="text/javascript" src="../js/easeljs-NEXT.min.js"></script>
+  <script type="text/javascript">
+  var canvas;
+  var stage;
+  var update = true;
+  function init() {
+      canvas = document.getElementById('myCanvas');
+      width = canvas.width;
+      height = canvas.height;
+      stage = new createjs.Stage(canvas);
+
+      var s = drawSmiley();
+      s.x = (960-350)/2;
+      s.y = 20;
+      stage.addChild(s);
+      stage.update();
+      createjs.Ticker.addListener(window);
+  }
+
+
+  function drawSmiley() {
+      var s = new createjs.Shape();
+      var g = s.graphics;
+
+      //Head
+      //g.setStrokeStyle(15, 'round', 'round');
+      g.beginStroke("#000");
+      g.beginFill("#F00");
+      g.drawCircle(170, 170, 170); //55,53
+      g.endFill();
+      //g.setStrokeStyle(1, 'round', 'round');
+      s.onPress = pressHandler;
+     
+      return s;
+  }
+
+function pressHandler(e){
+ e.onMouseMove = function(ev){
+  e.target.x = ev.stageX;
+  e.target.y = ev.stageY;
+  update = true;
+ }
+}
+
+function tick(){ 
+ if(update){
+  update = false;
+  stage.update(); 
+ }
+}
+
+
+  </script>
+
+</head>
+<body onload="init()">
+  <canvas id="myCanvas" width="1024" height="600"></canvas>
+</body>
+</html>
