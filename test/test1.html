@@ -8,6 +8,8 @@
   var canvas;
   var stage;
   var update = true;
+  var w = 170;
+  var h = 170;
   function init() {
       canvas = document.getElementById('myCanvas');
       width = canvas.width;
@@ -31,7 +33,7 @@
       //g.setStrokeStyle(15, 'round', 'round');
       g.beginStroke("#000");
       g.beginFill("#F00");
-      g.drawCircle(170, 170, 170); //55,53
+      g.drawCircle(w, w, w); //55,53
       g.endFill();
       //g.setStrokeStyle(1, 'round', 'round');
       s.onPress = pressHandler;
@@ -41,8 +43,8 @@
 
 function pressHandler(e){
  e.onMouseMove = function(ev){
-  e.target.x = ev.stageX;
-  e.target.y = ev.stageY;
+  e.target.x = ev.stageX-w;
+  e.target.y = ev.stageY-w;
   update = true;
  }
 }
